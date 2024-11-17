@@ -1,0 +1,467 @@
+latin
+ 
+router
+ 
+mb-32
+ 
+  
+ 
+3
+ 
+quantite
+ 
+export
+ 
+ue
+ 
+, uri = '/contact'
+ 
+justify-center
+ 
+center
+ 
+ml
+ 
+flex
+ 
+h-[600px] 
+ 
+useRouter
+ 
+|| "ordinateur"
+ 
+const [properties, setProperties] = useState([]);
+    const [totalResults, settotalResults] = useState([]);
+    const pageSize = 3;
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const search = async () => {
+        const {page, minPrice, maxPrice, neuf, occasion} = queryString.parse(window.location.search);
+        const filters = {};
+        if (minPrice) {
+            filters.minPrice = parseInt(minPrice);
+        }
+        if (maxPrice) {
+            filters.maxPrice = parseInt(maxPrice);
+        }
+        if (neuf === "true") {
+            filters.neuf = true;
+        }
+        if (occasion === "true") {
+            filters.occasion = true;
+        }
+        const response = await fetch(`/api/search`,{
+            method: "POST",
+            body: JSON.stringify({
+                page: parseInt(page || "1"),
+                ...filters, 
+            }),
+        });
+        const data = await response.json();
+        console.log("SEARCH DATA:", data);
+        setProperties(data.properties);
+        settotalResults(data.total);
+    };
+    const handlePageClick = async (pageNumber) => {
+        const {
+            occasion,
+            neuf,
+            minPrice,
+            maxPrice,
+        } = queryString.parse(window.location.search);
+        
+        router.push(`${pathname}?page=${pageNumber}&occasion=${occasion === "true"}&neuf=${neuf === "true"}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
+    };
+
+    useEffect (() => {
+        search();
+    },[]);
+
+    const handleSearch = async ({occasion,neuf,minPrice,maxPrice,}) => {
+        router.push(`${pathname}?page=1&occasion=${!!occasion}&neuf=${!!neuf}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
+    };
+ 
+import { useEffect, useState } from "react";
+import { Results } from "./Results";
+import { useRouter, usePathname } from "next/navigation";
+import queryString from "query-string";
+
+export const SuggestionProperty = () => {
+    const [properties, setProperties] = useState([]);
+    const [totalResults, settotalResults] = useState([]);
+    const pageSize = 3;
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const search = async () => {
+        const {page, minPrice, maxPrice, neuf, occasion} = queryString.parse(window.location.search);
+        const filters = {};
+        if (minPrice) {
+            filters.minPrice = parseInt(minPrice);
+        }
+        if (maxPrice) {
+            filters.maxPrice = parseInt(maxPrice);
+        }
+        if (neuf === "true") {
+            filters.neuf = true;
+        }
+        if (occasion === "true") {
+            filters.occasion = true;
+        }
+        const response = await fetch(`/api/search`,{
+            method: "POST",
+            body: JSON.stringify({
+                page: parseInt(page || "1"),
+                ...filters, 
+            }),
+        });
+        const data = await response.json();
+        console.log("SEARCH DATA:", data);
+        setProperties(data.properties);
+        settotalResults(data.total);
+    };
+    const handlePageClick = async (pageNumber) => {
+        const {
+            occasion,
+            neuf,
+            minPrice,
+            maxPrice,
+        } = queryString.parse(window.location.search);
+        
+        router.push(`${pathname}?page=${pageNumber}&occasion=${occasion === "true"}&neuf=${neuf === "true"}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
+    };
+
+    useEffect (() => {
+        search();
+    },[]);
+
+    const handleSearch = async ({occasion,neuf,minPrice,maxPrice,}) => {
+        router.push(`${pathname}?page=1&occasion=${!!occasion}&neuf=${!!neuf}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
+    };
+ 
+"use client";
+import { useEffect, useState } from "react";
+import { Results } from "./Results";
+import { useRouter, usePathname } from "next/navigation";
+import queryString from "query-string";
+
+export const SuggestionProperty = () => {
+    const [properties, setProperties] = useState([]);
+    const [totalResults, settotalResults] = useState([]);
+    const pageSize = 3;
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const search = async () => {
+        const {page, minPrice, maxPrice, neuf, occasion} = queryString.parse(window.location.search);
+        const filters = {};
+        if (minPrice) {
+            filters.minPrice = parseInt(minPrice);
+        }
+        if (maxPrice) {
+            filters.maxPrice = parseInt(maxPrice);
+        }
+        if (neuf === "true") {
+            filters.neuf = true;
+        }
+        if (occasion === "true") {
+            filters.occasion = true;
+        }
+        const response = await fetch(`/api/search`,{
+            method: "POST",
+            body: JSON.stringify({
+                page: parseInt(page || "1"),
+                ...filters, 
+            }),
+        });
+        const data = await response.json();
+        console.log("SEARCH DATA:", data);
+        setProperties(data.properties);
+        settotalResults(data.total);
+    };
+    const handlePageClick = async (pageNumber) => {
+        const {
+            occasion,
+            neuf,
+            minPrice,
+            maxPrice,
+        } = queryString.parse(window.location.search);
+        
+        router.push(`${pathname}?page=${pageNumber}&occasion=${occasion === "true"}&neuf=${neuf === "true"}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
+    };
+
+    useEffect (() => {
+        search();
+    },[]);
+
+    const handleSearch = async ({occasion,neuf,minPrice,maxPrice,}) => {
+        router.push(`${pathname}?page=1&occasion=${!!occasion}&neuf=${!!neuf}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
+    };
+    return (
+        <div>
+            <Results properties={properties}/>  
+        </div>
+    );
+};
+
+ 
+,categorie
+ 
+    .my-10 {
+        margin-top: -0.5rem;
+        margin-bottom: 5rem;
+    }
+ 
+mt-5"
+ 
+mt-5"
+ 
+Input
+ 
+example@gmail.com
+ 
+...
+ 
+between
+ 
+ className="pl-2"
+ 
+</>
+ 
+                      
+ 
+            )}
+ 
+
+            && ( 
+ 
+            {(!!occasion || !!neuf)
+ 
+            case "core/gallery" : {
+                return (
+                    <Gallery 
+                        key={block.id} columns={block.attributes.columns || 3}
+                        cropImages={block.attributes.imageCrop}
+                        items={block.innerBlocks}
+                    />
+                );
+            }
+ 
+ bg-white text-slate-900
+ 
+prix={block.attributes.prix} quantite={block.attributes.quantite} occasion={block.attributes.occasion}
+ 
+neuf, occasion, quantite, prix
+ 
+import { faBasketShopping, faCheck, faDog } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+ 
+<FontAwesomeIcon icon={faBasketShopping}/> 
+ 
+ pièces disponibles
+ 
+<div>
+                    {!!occasion && <> <FontAwesomeIcon icon={faDog}/> Occasion </>}
+                </div>
+                <div>
+                    {!!neuf && <> <FontAwesomeIcon icon={faCheck}/> produit neuf </>}
+                </div>
+ 
+white
+ 
+bathrooms={block.attributes.bathrooms} 
+ 
+, faCar, faDog 
+ 
+flex
+ 
+ justify-center
+ 
+Quantité
+ 
+between
+ 
+text-align: center;
+ 
+hasParking
+ 
+faBed
+ 
+prix
+ 
+                <div>
+                    <FontAwesomeIcon icon={faBed}/> {prix} prix
+                </div>
+ 
+                <div>
+                    <FontAwesomeIcon icon={faBed}/>
+                    <span className="pl-2">{neuf} neuf</span>
+                </div> 
+ 
+function Page() {
+    return <div>page</div>;
+ 
+            <hr/>
+
+ 
+00
+ 
+flex-1
+ 
+auto
+ 
+flex
+ 
+{items, callToActionDestination, callToActionLabel}
+ 
+MainMenu
+ 
+votreCouleur
+ 
+backgroundColor = {
+                            theme[block.attributes.backgroundColor] || 
+                            block.attributes.style?.color?.background
+                        }
+ 
+import { Footer } from "components/Footer";
+
+ 
+Color
+ 
+ src={background}
+ 
+ alt="Footer background" />
+ 
+, children
+ 
+function
+ 
+ && blocks[0].attributes.id
+ 
+"13"
+ 
+.attributes.id === "13"
+ 
+.attributes.id === 13
+ 
+
+    if (attributes && attributes.id === 13) {
+        coverClasses += "h-screen ";
+    } else {
+        coverClasses += "h-[500px] ";
+    }
+ 
+if (id === 106) 
+ 
+
+    if (id === 13) {
+        coverClasses += "h-screen";
+    } else if (id === 106) {
+        coverClasses;
+    }
+ 
++= "h-[400px]"
+ 
+h-screen 
+ 
+condition
+ 
+condition
+ 
+            case "core/coverBody" : {
+                return (
+                <CoverBody key={block.id} background={block.attributes.url} >
+                    <BlockRenderer blocks={block.innerBlocks}/>
+                </CoverBody>
+                );
+            }
+ 
+                
+ 
+                         
+ 
+coverClasses
+ 
+    // Définir les classes CSS en fonction de la taille spécifiée
+    let imageClasses = "mix-blend-soft-light object-cover";
+    if (size === "full") {
+        imageClasses += " h-screen"; // Taille plein écran
+    } else if (size === "large") {
+        imageClasses += " h-[400px]"; // Taille grande
+    } else {
+        // Taille par défaut
+        imageClasses += " h-[400px]";
+    }
+ 
+Cover
+ 
+200px
+ 
+background={block.attributes.url}
+ 
+div className="px-2 py-5"
+ 
+style={{...widthStyle, ...textColorStyle, ...backgroundColorStyle}} 
+ 
+ style
+ 
+    const style = textColor ? { color: textColor } : {};
+
+ 
+    const backgroundColorStyle = backgroundColor ? { backgroundColor } : {};
+    const widthStyle = width ? { minWidth: width, flexGrow: 1 } : { flexGrow: 1, flexBasis: 0 };
+ 
+, textColor, backgroundColor
+ 
+import { TickItem } from "components/TickItem";
+
+ 
+function Home(props) {
+  console.log("PROPS:", props);
+  return (
+    <div>
+      <MainMenu items={props.mainMenuItems} callToActionLabel={props.callToActionLabel} callToActionDestination={props.callToActionDestination}/>
+      <BlockRenderer blocks={props.blocks}/>
+    </div>
+  );
+}
+ 
+async (context) => {
+  const uri  = `/${context.params.slug.join("/")}/`;
+    const {data} = await client.query({
+        query: gql`
+          query PageQuery($uri: String!) {
+            nodeByUri(uri: $uri) {
+              ... on Page {
+                id
+                title
+                blocks(postTemplate: false)
+              }
+            }
+          }
+        `,
+        variables: {    
+            uri,
+          }
+      });
+      const blocks = cleanAndtransformBlocks(data.nodeByUri.blocks);
+      return {
+        props: {
+            title: data.nodeByUri.title,
+            blocks,
+        },
+      };
+}
+ 
+pink-600
+ 
+    .btn {
+        @apply bg-pink-500 hover:bg-pink-700 inline-block my-2 px-4 py-2 uppercase rounded-sm cursor-pointer font-bold text-white;
+    }
+ 
+<FaHouseUser size={30}/>
+            <FaHeart size={30}/>
+ 
+[...data.pages.nodes, ...data.properties.nodes]
+ 
